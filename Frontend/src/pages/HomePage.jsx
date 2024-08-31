@@ -7,7 +7,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import Layout from "../components/layout/Layout";
 
-import "../styles/Homepage.css";
+import "../styles/HomePage.css";  
 
 const HomePage = () => {
   const navigate = useNavigate();
