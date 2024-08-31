@@ -4,14 +4,16 @@ import { Outlet } from "react-router-dom";
 import axios from "axios";
 import Spinner from "../Spinner";
 
-export default function AdminRoutes() {
+export default function PrivateRoute() {
   const [ok, setOk] = useState(false);
   const [auth, setAuth] = useAuth();
 
   useEffect(() => {
-    const authCheck = async () => {
-      const res = await axios.get("http://localhost:8080/api/v1/auth/admin-auth");
 
+
+
+    const authCheck = async () => {
+      const res = await axios.get("https://ecoomerce-h1c7.onrender.com/api/v1/auth/user-auth");
       if (res.data.ok) {
      
         setOk(true);
@@ -31,5 +33,5 @@ export default function AdminRoutes() {
   }, [auth?.token]);
 
   
-  return ok ? <Outlet /> : <Spinner path="" />;
+  return ok ? <Outlet /> : <Spinner />;
 }
