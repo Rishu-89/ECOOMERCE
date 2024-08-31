@@ -17,7 +17,9 @@ let app=express();
 
 dotenv.config();
 
-app.use(cors());
+app.use(cors({
+  origin: '*', 
+}));
 
 connectDb();
 
