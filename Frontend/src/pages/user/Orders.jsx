@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import UserMenu from "../../components/layout/UserMenu";
   // ../../components/Layout/UserMenu
-import Layout from "./../../components/Layout/Layout";
+import Layout from "./../../components/layout/Layout";
 import axios from "axios";
 import { useAuth } from "../../context/auth";
 import moment from "moment";
