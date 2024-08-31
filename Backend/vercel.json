@@ -1,34 +1,10 @@
-
-
 {
   "version": 2,
+  "name": "ecom",
   "builds": [
-    {
-      "src": "Frontend/package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist"
-      }
-    },
-    {
-      "src": "Backend/package.json",
-      "use": "@vercel/node",
-      "config": {
-        "includeFiles": [
-          "Backend/**",
-          "Frontend/dist/**"
-        ]
-      }
-    }
+     { "src": "server.js", "use": "@vercel/node" }
   ],
   "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "/Backend/api/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/Frontend/dist/$1"
-    }
+     { "src": "/(.*)", "dest": "/server.js" }
   ]
 }
