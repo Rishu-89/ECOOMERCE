@@ -7,7 +7,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import Layout from "../components/layout/Layout";
 
-import "../styles/HomePage.css";  
+import "../styles/Homepage.css";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -23,7 +23,7 @@ const HomePage = () => {
   //get all cat
   const getAllCategory = async () => {
     try {
-      const { data } = await axios.get("https://ecoomerce-h1c7.onrender.com/api/v1/category/get-category");
+      const { data } = await axios.get("http://localhost:8080/api/v1/category/get-category");
       if (data?.success) {
         
         setCategories(data?.category);
@@ -45,7 +45,7 @@ const HomePage = () => {
   //getTOtal COunt
   const getTotal = async () => {
     try {
-      const { data } = await axios.get("https://ecoomerce-h1c7.onrender.com/api/v1/product/product-count");
+      const { data } = await axios.get("http://localhost:8080/api/v1/product/product-count");
       setTotal(data?.total);
     } catch (error) {
       console.log(error);
@@ -59,7 +59,7 @@ const HomePage = () => {
   const getAllProducts = async () => {
     try {
       setLoading(true);
-      const { data } = await axios.get(`https://ecoomerce-h1c7.onrender.com/api/v1/product/product-list/${page}`);
+      const { data } = await axios.get(`http://localhost:8080/api/v1/product/product-list/${page}`);
       setLoading(false);
       setProducts(data.products);
     } catch (error) {
@@ -87,7 +87,7 @@ const HomePage = () => {
   // const loadMore = async () => {
   //   try {
   //     setLoading(true);
-  //     const { data } = await axios.get(`https://ecoomerce-h1c7.onrender.com/api/v1/product/product-list/${page}`);
+  //     const { data } = await axios.get(`http://localhost:8080/api/v1/product/product-list/${page}`);
   //     setLoading(false);
   //     setProducts([...products, ...data?.products]);
   //   } catch (error) {
@@ -115,7 +115,7 @@ const HomePage = () => {
     //get filterd product
     const filterProduct = async () => {
       try {
-        const { data } = await axios.post("https://ecoomerce-h1c7.onrender.com/api/v1/product/product-filters", {
+        const { data } = await axios.post("http://localhost:8080/api/v1/product/product-filters", {
           checked,
           radio,
         });
@@ -197,13 +197,28 @@ const HomePage = () => {
             </button>
           </div>
         </div>
+        {loading ? <>
+          <div>
+            <center>
+  <div className="spinner-border" style={{width: '12rem', height: '12rem'}} role="status">
+    <span className="visually-hidden">Loading...</span>
+  </div>
+  <div className="spinner-grow" style={{width: '13rem', height: '13rem'}} role="status">
+    <span className="visually-hidden">Loading...</span>
+  </div>
+  <h1>Loading products...............</h1>
+  </center>
+</div>
+
+        
+        </>:<>
         <div className="col-md-9 ">
           <h1 className="text-center">All Products</h1>
           <div className="d-flex flex-wrap">
             {products?.map((p) => (
               <div className="card m-2" key={p._id}>
                 <img
-                  src={`https://ecoomerce-h1c7.onrender.com/api/v1/product/product-photo/${p._id}`}
+                  src={`http://localhost:8080/api/v1/product/product-photo/${p._id}`}
                   className="card-img-top"
                   alt={p.name}
                 />
@@ -267,6 +282,8 @@ const HomePage = () => {
             )}
           </div> */}
         </div>
+        </>}
+     
       </div>
     </Layout>
   );
